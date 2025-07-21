@@ -9,9 +9,9 @@ class DeputadosController extends Controller
 {
     public function index()
     {
-        $result = Http::get("https://dadosabertos.camara.leg.br/api/v2/deputados");
+        $response = Http::get("https://dadosabertos.camara.leg.br/api/v2/deputados");
 
-        if (!$result) {
+        if ($response->failed()) {
             return response()->json([
                 "error" => true,
                 "message" => "Nenhum dado encontrado!",
@@ -21,7 +21,7 @@ class DeputadosController extends Controller
         return response()->json([
             "error" => false,
             "message" => "Sucesso!",
-            "data" => $result
+            "data" => $response->json()
         ], 200);
     }
 }
