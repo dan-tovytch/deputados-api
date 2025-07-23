@@ -9,5 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::prefix("deputados")->group(function () {
-    Route::get("/", [DeputadosController::class, 'index'])->name("get.deputados");
+    Route::get("/ranking", [DeputadosController::class, 'ranking'])->name("ranking.deputados");
 });
